@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.widget.TextView
 import kotlin.math.pow
 
-class `01_ResultActivity` : AppCompatActivity() {
+class Ch1_ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result01)
+        setContentView(R.layout.activity_ch1_result)
 
         val height = intent.getIntExtra("height", 0)
         val weight = intent.getIntExtra("weight", 0)

@@ -7,10 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 
-class `01_MainActivity` : AppCompatActivity() {
+class Ch1_MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main01)
+        setContentView(R.layout.activity_ch1_main)
 
         val heightEditText : EditText = findViewById(R.id.heightEditText)
         val weightEditText = findViewById<EditText>(R.id.weightEditText)
@@ -32,7 +32,7 @@ class `01_MainActivity` : AppCompatActivity() {
 
 //            Log.d("MainActivity", "height : ${height}, weight : ${weight} ")
 
-            val intent = Intent(this, `01_ResultActivity`::class.java)
+            val intent = Intent(this, Ch1_ResultActivity::class.java)
             intent.putExtra("height", height)
             intent.putExtra("weight", weight)
             startActivity(intent)
