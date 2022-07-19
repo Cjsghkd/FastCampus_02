@@ -3,15 +3,14 @@ package com.example.a30androidwithkotlie
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 
-class MainActivity : AppCompatActivity() {
+class `01_MainActivity` : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main01)
 
         val heightEditText : EditText = findViewById(R.id.heightEditText)
         val weightEditText = findViewById<EditText>(R.id.weightEditText)
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 //            Log.d("MainActivity", "height : ${height}, weight : ${weight} ")
 
-            val intent = Intent(this, ResultActivity::class.java)
+            val intent = Intent(this, `01_ResultActivity`::class.java)
             intent.putExtra("height", height)
             intent.putExtra("weight", weight)
             startActivity(intent)
