@@ -26,7 +26,6 @@ class Ch1_MainActivity : AppCompatActivity() {
             }
 
             // 이 아래로는 절대 빈 값이 올 수 없음 (예외처리 완료)
-
             val height : Int = heightEditText.text.toString().toInt()
             val weight : Int = weightEditText.text.toString().toInt()
 
