@@ -19,7 +19,6 @@ class Ch1_MainActivity : AppCompatActivity() {
 
         resultButton.setOnClickListener {
 //            Log.d("MainActivity", "ResultButton 이 클릭되었습니다.")
-
             if (heightEditText.text.isEmpty() || weightEditText.text.isEmpty()) {
                 Toast.makeText(this, "빈 값이 있습니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -28,7 +27,6 @@ class Ch1_MainActivity : AppCompatActivity() {
             // 이 아래로는 절대 빈 값이 올 수 없음 (예외처리 완료)
             val height : Int = heightEditText.text.toString().toInt()
             val weight : Int = weightEditText.text.toString().toInt()
-
 //            Log.d("MainActivity", "height : ${height}, weight : ${weight} ")
 
             val intent = Intent(this, Ch1_ResultActivity::class.java)
