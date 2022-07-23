@@ -14,7 +14,6 @@ class Ch1_MainActivity : AppCompatActivity() {
 
         val heightEditText : EditText = findViewById(R.id.heightEditText)
         val weightEditText = findViewById<EditText>(R.id.weightEditText)
-
         val resultButton = findViewById<Button>(R.id.resultButton)
 
         resultButton.setOnClickListener {
