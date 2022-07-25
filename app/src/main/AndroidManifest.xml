@@ -14,13 +14,17 @@
         android:theme="@style/Theme.30개프로젝트로배우는Android앱개발WithKotlie"
         tools:targetApi="31">
         <activity
+            android:name=".Ch2_MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".Ch1_MainActivity"
             android:exported="false" />
         <activity
             android:name=".Ch1_ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".Ch2_MainActivity"
+            android:name=".Ch3_MainActivity"
+            android:theme="@style/Theme.30개프로젝트로배우는Android앱개발WithKotlie.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
