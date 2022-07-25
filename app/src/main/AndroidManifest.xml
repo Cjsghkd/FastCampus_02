@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.30개프로젝트로배우는Android앱개발WithKotlie"
         tools:targetApi="31">
+        <activity android:name=".Ch3_DiaryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.30개프로젝트로배우는Android앱개발WithKotlie.NoActionBar"/>
         <activity
             android:name=".Ch2_MainActivity"
             android:exported="false" />

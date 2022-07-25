@@ -1,6 +1,7 @@
 package com.example.a30androidwithkotlie
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -67,7 +68,7 @@ class Ch3_MainActivity : AppCompatActivity() {
 
             if (passwordPreferences.getString("password", "000").equals(passwordFromUser)) {// 둘이 같다면 실행
                 // 패스워드 성공
-//                startActivity()
+                startActivity(Intent(this, Ch3_DiaryActivity::class.java))
             } else {
                 // 실패
                 showErrorAlertDialog()
