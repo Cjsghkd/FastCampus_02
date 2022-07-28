@@ -5,10 +5,15 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import androidx.room.Room
+import com.example.a30androidwithkotlie.ch4_model.History
 import java.lang.NumberFormatException
 import kotlin.math.exp
 
@@ -22,12 +27,28 @@ class Ch4_MainActivity : AppCompatActivity() {
         findViewById(R.id.resultTextView)
     }
 
+    private val historyLayout : View by lazy {
+        findViewById(R.id.historyLayout)
+    }
+
+    private val historyLinearLayout : LinearLayout by lazy {
+        findViewById(R.id.historyLinearLayout)
+    }
+
+    lateinit var DB : Ch4_AppDatabase
+
     private var isOperator = false
     private var hasOperator = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ch4_main)
+
+        DB = Room.databaseBuilder(
+            applicationContext,
+            Ch4_AppDatabase::class.java,
+            "historyDB"
+        ).build()
     }
 
     fun buttonClicked(v: View) {
@@ -119,6 +140,10 @@ class Ch4_MainActivity : AppCompatActivity() {
         val expressionText = expressionTextView.text.toString()
         val resultText = calculateExpression()
 
+        Thread(Runnable {
+            DB.historyDao().insertHistory(History(null, expressionText, resultText))
+        }).start()
+
         resultTextView.text = ""
         expressionTextView.text = resultText
 
@@ -152,7 +177,30 @@ class Ch4_MainActivity : AppCompatActivity() {
     }
 
     fun historyButtonClicked(v: View) {
+        historyLayout.isVisible = true
+        historyLinearLayout.removeAllViews()
 
+        Thread(Runnable {
+            DB.historyDao().getAll().reversed().forEach {
+                runOnUiThread {
+                    val historyView = LayoutInflater.from(this).inflate(R.layout.activity_ch4_history_row, null, false)
+                    historyView.findViewById<TextView>(R.id.expressionTextView).text = it.expression
+                    historyView.findViewById<TextView>(R.id.resultTextView).text = "= ${it.result}"
+                    historyLinearLayout.addView(historyView)
+                }
+            }
+        }).start()
+    }
+
+    fun historyClearButtonClicked(v : View) {
+        historyLinearLayout.removeAllViews()
+        Thread(Runnable {
+            DB.historyDao().deleteAll()
+        }).start()
+    }
+
+    fun closeHistoryButtonClicked(v : View) {
+        historyLayout.isVisible = false
     }
 
     fun clearButtonClicked(v: View) {
