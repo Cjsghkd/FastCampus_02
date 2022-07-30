@@ -81,7 +81,7 @@ class Ch5_MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "권한을 거부하셨습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
-            else -> {}
+            else -> { }
         }
 
     }
