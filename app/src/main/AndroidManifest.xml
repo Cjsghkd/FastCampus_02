@@ -17,7 +17,9 @@
         tools:targetApi="31">
         <activity
             android:name=".Ch5_PhotoFrameActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.30개프로젝트로배우는Android앱개발WithKotlie.NoActionBar" />
         <activity
             android:name=".Ch4_MainActivity"
             android:exported="false" />
