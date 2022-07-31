@@ -134,7 +134,14 @@ class Ch5_MainActivity : AppCompatActivity() {
     }
 
     private fun initStartPhotoFrameModeButton() {
-
+        startPhotoFrameModeButton.setOnClickListener {
+            val intent = Intent(this, Ch5_PhotoFrameActivity::class.java)
+            imageUriList.forEachIndexed { index, uri ->
+                intent.putExtra("photo$index", uri.toString())
+            }
+            intent.putExtra("photoListSize", imageUriList.size)
+            startActivity(intent)
+        }
     }
 
 }
