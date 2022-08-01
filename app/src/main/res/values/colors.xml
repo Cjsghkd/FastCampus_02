@@ -14,4 +14,7 @@
     <color name="textColor">#555555</color>
     <color name="green">#7aaf3b</color>
     <color name="greenPress">#618c2f</color>
+
+    <color name="PomodoroRed">#FFD32F2F</color>
+    <color name="transparent">#00000000</color>
 </resources>

@@ -60,13 +60,16 @@ class Ch6_MainActivity : AppCompatActivity() {
                 }
 
                 override fun onStartTrackingTouch(seekBar : SeekBar?) {
-                    currentCountDownTimer?.cancel()
-                    currentCountDownTimer = null
+                    stopCountDown()
                 }
 
                 override fun onStopTrackingTouch(seekBar : SeekBar?) {
                     seekBar ?: return // 좌측 값이 널이면 리턴한다
-                    startCountDown()
+                    if (seekBar.progress == 0) {
+                        stopCountDown()
+                    } else {
+                        startCountDown()
+                    }
                 }
             }
         )
@@ -98,6 +101,12 @@ class Ch6_MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun stopCountDown() {
+        currentCountDownTimer?.cancel()
+        currentCountDownTimer = null
+        soundPool.autoPause()
+    }
+
     private fun completeCountDown() {
         updateRemainTime(0)
         updateSeekBar(0)
@@ -112,7 +121,7 @@ class Ch6_MainActivity : AppCompatActivity() {
 
         val remainSeconds = remainMills / 1000
 
-        remainMinuteTextView.text = "%02d".format(remainSeconds / 60)
+        remainMinuteTextView.text = "%02d'".format(remainSeconds / 60)
         remainSecondsTextView.text = "%02d".format(remainSeconds % 60)
     }
 
