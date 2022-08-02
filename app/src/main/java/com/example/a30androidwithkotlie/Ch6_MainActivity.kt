@@ -118,7 +118,6 @@ class Ch6_MainActivity : AppCompatActivity() {
     }
 
     private fun updateRemainTime(remainMills : Long) {
-
         val remainSeconds = remainMills / 1000
 
         remainMinuteTextView.text = "%02d'".format(remainSeconds / 60)
