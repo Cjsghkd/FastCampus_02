@@ -4,6 +4,7 @@
     package="com.example.a30androidwithkotlie">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.30개프로젝트로배우는Android앱개발WithKotlie"
         tools:targetApi="31">
+        <activity
+            android:name=".Ch6_MainActivity"
+            android:exported="false" />
         <activity
             android:name=".Ch5_MainActivity"
             android:exported="false" />
@@ -44,7 +48,7 @@
             android:name=".Ch1_ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".Ch6_MainActivity"
+            android:name=".Ch7_MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
