@@ -11,9 +11,9 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
 <!--        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
-        <item name="android:statusBarColor">@color/PomodoroRed</item>
+<!--        <item name="android:statusBarColor">@color/PomodoroRed</item>-->
         <!-- Customize your theme here. -->
-        <item name="android:windowBackground">@color/PomodoroRed</item>
+<!--        <item name="android:windowBackground">@color/PomodoroRed</item>-->
     </style>
     
     <style name="Theme.30개프로젝트로배우는Android앱개발WithKotlie.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
