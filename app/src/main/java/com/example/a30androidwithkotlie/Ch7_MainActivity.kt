@@ -44,6 +44,7 @@ class Ch7_MainActivity : AppCompatActivity() {
         initView()
         bindViews()
         initVariables()
+
     }
 
     override fun onRequestPermissionsResult(
