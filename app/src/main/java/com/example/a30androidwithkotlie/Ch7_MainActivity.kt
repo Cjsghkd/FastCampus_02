@@ -17,7 +17,7 @@ class Ch7_MainActivity : AppCompatActivity() {
     private var state = Ch7_State.BEFORE_RECORDING
         set(value) {
             field = value
-            resetButton.isEnabled = (value == Ch7_State.AFTER_RECORDING) || (value == Ch7_State.ON_PLAYING)
+            resetButton.isEnabled = ( (value == Ch7_State.AFTER_RECORDING) || (value == Ch7_State.ON_PLAYING) )
             recordButton.updateIconWithState(value)
     }
 
