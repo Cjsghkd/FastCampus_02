@@ -18,6 +18,9 @@
         android:theme="@style/Theme.30개프로젝트로배우는Android앱개발WithKotlie"
         tools:targetApi="31">
         <activity
+            android:name=".Ch9_MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".Ch8_MainActivity"
             android:exported="false" />
         <activity
@@ -55,8 +58,8 @@
             android:name=".Ch1_ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".Ch9_MainActivity"
-            android:exported="true" >
+            android:name=".Ch10_MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,8 +67,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".Ch9_MyFirebaseMessagingService"
-            android:exported="false" >
+        <service
+            android:name=".Ch9_MyFirebaseMessagingService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
