@@ -17,4 +17,7 @@
 
     <color name="PomodoroRed">#FFD32F2F</color>
     <color name="transparent">#00000000</color>
+
+    <color name="light_gray">#FFCFCFCF</color>
+    <color name="dark_gray">#FF707070</color>
 </resources>
