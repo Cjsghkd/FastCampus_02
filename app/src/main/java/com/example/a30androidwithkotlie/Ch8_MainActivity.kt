@@ -6,6 +6,7 @@ import android.view.inputmethod.EditorInfo
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.EditText
+import android.widget.ImageButton
 
 class Ch8_MainActivity : AppCompatActivity() {
 
@@ -17,6 +18,18 @@ class Ch8_MainActivity : AppCompatActivity() {
         findViewById(R.id.addressBar)
     }
 
+    private val goHomeButton : ImageButton by lazy {
+        findViewById(R.id.goHomeButton)
+    }
+
+    private val goBackButton : ImageButton by lazy {
+        findViewById(R.id.goBackButton)
+    }
+
+    private val goForwardButton : ImageButton by lazy {
+        findViewById(R.id.goForwardButton)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ch8_main)
@@ -25,11 +38,20 @@ class Ch8_MainActivity : AppCompatActivity() {
         bindViews()
     }
 
+    override fun onBackPressed() {
+        if (webview.canGoBack()) {
+            webview.goBack()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     private fun initViews() {
         webview.apply {
             webViewClient = WebViewClient()
             settings.javaScriptEnabled = true
-            loadUrl("http://www.google.com")
+//            loadUrl("http://www.google.com")
+            loadUrl(DEFAULT_URL)
         }
 //        webview.webViewClient = WebViewClient()
 //        webview.settings.javaScriptEnabled = true
@@ -37,6 +59,11 @@ class Ch8_MainActivity : AppCompatActivity() {
     }
 
     private fun bindViews() {
+        goHomeButton.setOnClickListener {
+//            webview.loadUrl("http://www.google.com")
+            webview.loadUrl(DEFAULT_URL)
+        }
+
         addressBar.setOnEditorActionListener { v, actionId , event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 webview.loadUrl(v.text.toString())
@@ -44,6 +71,18 @@ class Ch8_MainActivity : AppCompatActivity() {
 
             return@setOnEditorActionListener false
         }
+
+        goBackButton.setOnClickListener {
+            webview.goBack()
+        }
+
+        goForwardButton.setOnClickListener {
+            webview.goForward()
+        }
+    }
+
+    companion object {
+        private const val DEFAULT_URL = "http://www.google.com"
     }
 
 }
