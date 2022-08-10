@@ -3,11 +3,15 @@ package com.example.a30androidwithkotlie
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a30androidwithkotlie.ch12_adapter.Ch12_BookAdapter
 import com.example.a30androidwithkotlie.ch12_api.Ch12_BookService
 import com.example.a30androidwithkotlie.ch12_model.Ch12_BastSellerDto
+import com.example.a30androidwithkotlie.ch12_model.Ch12_SearchBookDto
 import com.example.a30androidwithkotlie.databinding.ActivityCh12MainBinding
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,6 +20,7 @@ class Ch12_MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityCh12MainBinding
     private lateinit var adapter : Ch12_BookAdapter
+    private lateinit var bookService : Ch12_BookService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +34,9 @@ class Ch12_MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val bookService = retrofit.create(Ch12_BookService::class.java)
+        bookService = retrofit.create(Ch12_BookService::class.java)
 
-        bookService.getBestSellerBooks("CCFDCE1728A7F7C946AF7D6820A3BB7B353505566802F1FE462287F271B43AFC")
+        bookService.getBestSellerBooks(getString(R.string.interparkAPIKey))
             .enqueue(object : Callback<Ch12_BastSellerDto> {
                 override fun onResponse(
                     call: Call<Ch12_BastSellerDto>, response: Response<Ch12_BastSellerDto>) {
@@ -56,9 +61,40 @@ class Ch12_MainActivity : AppCompatActivity() {
                     Log.e(TAG, t.toString())
                 }
             })
+
+        binding.searchEditText.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == MotionEvent.ACTION_DOWN) {
+                search(binding.searchEditText.text.toString())
+                return@setOnKeyListener true
+            }
+
+            return@setOnKeyListener false
+        }
     }
 
-    fun initBookRecyclerView() {
+    private fun search(keyword : String) {
+        bookService.getBooksByName(getString(R.string.interparkAPIKey), keyword)
+            .enqueue(object : Callback<Ch12_SearchBookDto> {
+                override fun onResponse(
+                    call: Call<Ch12_SearchBookDto>, response: Response<Ch12_SearchBookDto>) {
+                    // 성공처리
+                    if (response.isSuccessful.not()) {
+                        Log.e(TAG, "NOT!! SUCCESS")
+                        return
+                    }
+
+                    adapter.submitList(response.body()?.books.orEmpty())
+
+                }
+
+                override fun onFailure(call: Call<Ch12_SearchBookDto>, t: Throwable) {
+                    // 실패처리
+                    Log.e(TAG, t.toString())
+                }
+            })
+    }
+
+    private fun initBookRecyclerView() {
         adapter = Ch12_BookAdapter()
 
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
