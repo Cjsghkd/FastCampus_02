@@ -59,7 +59,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
 
     // Ch10 파이어베이스 설정
-    implementation platform('com.google.firebase:firebase-bom:30.3.2')
+//    implementation platform('com.google.firebase:firebase-bom:30.3.2')
     implementation 'com.google.firebase:firebase-config-ktx:21.1.1'
 //    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
 
@@ -74,4 +74,6 @@ dependencies {
     kapt 'androidx.room:room-compiler:2.4.3'
     implementation 'androidx.room:room-runtime:2.4.3'
 
+    // Ch13 파이어베이스 설정
+    implementation platform('com.google.firebase:firebase-bom:30.3.2')
 }

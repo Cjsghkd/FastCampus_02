@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "345809336086",
-    "project_id": "aop-part3-chapter02-73d8e",
-    "storage_bucket": "aop-part3-chapter02-73d8e.appspot.com"
+    "project_number": "82993712131",
+    "firebase_url": "https://festcampus-tinder-default-rtdb.firebaseio.com",
+    "project_id": "festcampus-tinder",
+    "storage_bucket": "festcampus-tinder.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:345809336086:android:a99059113f4dc5f03b0237",
+        "mobilesdk_app_id": "1:82993712131:android:85dacd0ce0097016711236",
         "android_client_info": {
           "package_name": "com.example.a30androidwithkotlie"
         }
       },
       "oauth_client": [
         {
-          "client_id": "345809336086-eoe4mrqcunqdh6ebuopcqh2309gi0hkj.apps.googleusercontent.com",
+          "client_id": "82993712131-sff82m8tnlbj1sj80dlv7f7l3li0qol6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBqFfmXneltOmRa1NupnHL6sBmmDbmlZdc"
+          "current_key": "AIzaSyBLqPtH8JGdxTd43zna2SpzY9sFLqH27Yg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "345809336086-eoe4mrqcunqdh6ebuopcqh2309gi0hkj.apps.googleusercontent.com",
+              "client_id": "82993712131-sff82m8tnlbj1sj80dlv7f7l3li0qol6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
