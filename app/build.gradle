@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    // intent putExtra 를 할때 클래스를 바로 넘기기 위한 직렬화 과정에 필요함
+    id 'kotlin-parcelize'
 }
 
 android {

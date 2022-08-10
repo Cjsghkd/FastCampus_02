@@ -1,5 +1,6 @@
 package com.example.a30androidwithkotlie
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +37,7 @@ class Ch12_MainActivity : AppCompatActivity() {
 
         initBookRecyclerView()
         initHistoryRecyclerView()
+        initSearchEditText()
 
         DB = Room.databaseBuilder(
             applicationContext,
@@ -114,7 +116,11 @@ class Ch12_MainActivity : AppCompatActivity() {
     }
 
     private fun initBookRecyclerView() {
-        adapter = Ch12_BookAdapter()
+        adapter = Ch12_BookAdapter(itemClickedListener = {
+            val intent = Intent(this, Ch12_DetailActivity::class.java)
+            intent.putExtra("bookModel", it)
+            startActivity(intent)
+        })
 
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.bookRecyclerView.adapter = adapter
