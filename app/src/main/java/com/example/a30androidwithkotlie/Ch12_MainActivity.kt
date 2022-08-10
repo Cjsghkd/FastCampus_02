@@ -3,15 +3,26 @@ package com.example.a30androidwithkotlie
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a30androidwithkotlie.ch12_adapter.Ch12_BookAdapter
 import com.example.a30androidwithkotlie.ch12_api.Ch12_BookService
 import com.example.a30androidwithkotlie.ch12_model.Ch12_BastSellerDto
+import com.example.a30androidwithkotlie.databinding.ActivityCh12MainBinding
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Ch12_MainActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityCh12MainBinding
+    private lateinit var adapter : Ch12_BookAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ch12_main)
+        binding = ActivityCh12MainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        initBookRecyclerView()
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://book.interpark.com")
@@ -36,7 +47,7 @@ class Ch12_MainActivity : AppCompatActivity() {
                         it.books.forEach { book ->
                             Log.d(TAG, book.toString())
                         }
-
+                        adapter.submitList(it.books)
                     }
                 }
 
@@ -45,6 +56,13 @@ class Ch12_MainActivity : AppCompatActivity() {
                     Log.e(TAG, t.toString())
                 }
             })
+    }
+
+    fun initBookRecyclerView() {
+        adapter = Ch12_BookAdapter()
+
+        binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.bookRecyclerView.adapter = adapter
     }
 
     companion object {
