@@ -39,11 +39,7 @@ class Ch12_MainActivity : AppCompatActivity() {
         initHistoryRecyclerView()
         initSearchEditText()
 
-        DB = Room.databaseBuilder(
-            applicationContext,
-            Ch12_AppDatabase::class.java,
-            "BookSearchDB"
-        ).build()
+        DB = getAppDatabase(this)
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://book.interpark.com")

@@ -19,11 +19,7 @@ class Ch12_DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        DB = Room.databaseBuilder(
-            applicationContext,
-            Ch12_AppDatabase::class.java,
-            "BookSearchDB"
-        ).build()
+        DB = getAppDatabase(this)
 
         val model = intent!!.getParcelableExtra<Ch12_Book>("bookModel")
 
