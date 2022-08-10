@@ -51,4 +51,10 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.3.1')
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.7'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
+
+    // Ch10 파이어베이스 설정
+    implementation platform('com.google.firebase:firebase-bom:30.3.2')
+    implementation 'com.google.firebase:firebase-config-ktx:21.1.1'
+//    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
+
 }
