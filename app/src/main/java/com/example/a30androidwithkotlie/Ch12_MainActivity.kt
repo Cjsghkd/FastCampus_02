@@ -7,10 +7,14 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.a30androidwithkotlie.ch12_adapter.Ch12_BookAdapter
+import com.example.a30androidwithkotlie.ch12_adapter.Ch12_HistoryAdapter
 import com.example.a30androidwithkotlie.ch12_api.Ch12_BookService
 import com.example.a30androidwithkotlie.ch12_model.Ch12_BastSellerDto
+import com.example.a30androidwithkotlie.ch12_model.Ch12_History
 import com.example.a30androidwithkotlie.ch12_model.Ch12_SearchBookDto
 import com.example.a30androidwithkotlie.databinding.ActivityCh12MainBinding
 import retrofit2.*
@@ -20,7 +24,10 @@ class Ch12_MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityCh12MainBinding
     private lateinit var adapter : Ch12_BookAdapter
+    private lateinit var historyAdapter : Ch12_HistoryAdapter
     private lateinit var bookService : Ch12_BookService
+
+    private lateinit var DB : Ch12_AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +35,13 @@ class Ch12_MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initBookRecyclerView()
+        initHistoryRecyclerView()
+
+        DB = Room.databaseBuilder(
+            applicationContext,
+            Ch12_AppDatabase::class.java,
+            "BookSearchDB"
+        ).build()
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://book.interpark.com")
@@ -78,6 +92,10 @@ class Ch12_MainActivity : AppCompatActivity() {
                 override fun onResponse(
                     call: Call<Ch12_SearchBookDto>, response: Response<Ch12_SearchBookDto>) {
                     // 성공처리
+
+                    hideHistoryView()
+                    saveSearchKeyword(keyword)
+
                     if (response.isSuccessful.not()) {
                         Log.e(TAG, "NOT!! SUCCESS")
                         return
@@ -89,6 +107,7 @@ class Ch12_MainActivity : AppCompatActivity() {
 
                 override fun onFailure(call: Call<Ch12_SearchBookDto>, t: Throwable) {
                     // 실패처리
+                    hideHistoryView()
                     Log.e(TAG, t.toString())
                 }
             })
@@ -99,6 +118,63 @@ class Ch12_MainActivity : AppCompatActivity() {
 
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.bookRecyclerView.adapter = adapter
+    }
+
+    private fun initHistoryRecyclerView() {
+        historyAdapter = Ch12_HistoryAdapter(historyDeleteClickedListener = {
+            deleteSearchKeyword(it)
+        })
+
+        binding.historyRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.historyRecyclerView.adapter = historyAdapter
+        initSearchEditText()
+    }
+
+    private fun initSearchEditText() {
+        binding.searchEditText.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == MotionEvent.ACTION_DOWN) {
+                search(binding.searchEditText.text.toString())
+                return@setOnKeyListener true
+            }
+
+            return@setOnKeyListener false
+        }
+
+        binding.searchEditText.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                showHistoryView()
+            }
+            return@setOnTouchListener false
+        }
+    }
+
+    private fun showHistoryView() {
+        Thread {
+            val keywords = DB.historyDao().getAll().reversed()
+            runOnUiThread {
+                binding.historyRecyclerView.isVisible = true
+                historyAdapter.submitList(keywords.orEmpty())
+            }
+        }.start()
+        binding.historyRecyclerView.isVisible = true
+    }
+
+    private fun hideHistoryView() {
+        binding.historyRecyclerView.isVisible = false
+    }
+
+    private fun saveSearchKeyword(keyword : String) {
+        Thread {
+            DB.historyDao().insertHistory(Ch12_History(null, keyword))
+        }.start()
+    }
+
+    private fun deleteSearchKeyword(keyword : String) {
+        Thread {
+            DB.historyDao().delete(keyword)
+            // view 갱신
+            showHistoryView()
+        }.start()
     }
 
     companion object {
