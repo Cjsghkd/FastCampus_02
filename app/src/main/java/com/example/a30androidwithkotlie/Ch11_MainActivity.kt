@@ -1,5 +1,6 @@
 package com.example.a30androidwithkotlie
 
+import android.app.AlarmManager
 import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
@@ -23,9 +24,9 @@ class Ch11_MainActivity : AppCompatActivity() {
 
         // step1 데이터 가져오기
         val model = fetchDataFromSharedPreferences()
-        renderView(model)
 
         // step2 뷰에 데이터를 그려주기
+        renderView(model)
 
     }
 
@@ -33,13 +34,41 @@ class Ch11_MainActivity : AppCompatActivity() {
         val onOffButton = findViewById<Button>(R.id.onOffButton)
         onOffButton.setOnClickListener {
             // 데이터를 확인을 한다.
-
-            // 온오프에 따라 작업을 처리한다.
-
-            // 오프 -> 알람을 제거
-            // 온 -> 알람을 등록
+            val model = it.tag as? Ch11_AlarmDisplayModel ?: return@setOnClickListener
 
             // 데이터를 저장한다.
+            val newModel = saveAlarmModel(model.hour, model.minute, model.onOff.not())
+            renderView(newModel)
+
+            // 온오프에 따라 작업을 처리한다.
+            if (newModel.onOff) {
+                // 켜진경우 -> 알람을 등록
+                val calendar = Calendar.getInstance().apply {
+                    set(Calendar.HOUR_OF_DAY, newModel.hour)
+                    set(Calendar.MINUTE, newModel.minute)
+
+                    if (before(Calendar.getInstance())) {
+                        add(Calendar.DATE, 1)
+                    }
+                }
+
+                val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                val intent = Intent(this, Ch11_AlarmReceiver::class.java)
+                val pendingIntent = PendingIntent.getBroadcast(this, ALARM_REQUEST_CODE,
+                    intent, PendingIntent.FLAG_UPDATE_CURRENT
+                )
+
+                alarmManager.setInexactRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    AlarmManager.INTERVAL_DAY,
+                    pendingIntent
+                )
+
+            } else {
+                // 꺼진경우 -> 알람을 제거
+                cancelAlarm()
+            }
         }
     }
 
@@ -51,12 +80,15 @@ class Ch11_MainActivity : AppCompatActivity() {
 
             // TimePickDialog 띄워줘서 시간을 설정을 하도록 하게하고, 그시간을 가져온다.
             TimePickerDialog(this, { picker, hour, minute ->
+
                 // 데이터를 저장한다.
                 val model = saveAlarmModel(hour, minute, false)
+
                 // 뷰를 업데이트 한다.
                 renderView(model)
-                // 기존에 있던 알람을 삭제한다.
 
+                // 기존에 있던 알람을 삭제한다.
+                cancelAlarm()
 
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false).show()
 
@@ -95,16 +127,16 @@ class Ch11_MainActivity : AppCompatActivity() {
         )
 
         // 보정 (예외처리)
-//        val pendingIntent = PendingIntent.getBroadcast(this, ALARM_REQUEST_CODE, Intent(this, AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE)
-//
-//        if ((pendingIntent == null) and alarmModel.onOff) {
-//            // 알람은 꺼져있는데, 데이터(알람모델)는 켜져있는 경우
-//            alarmModel.onOff = false
-//        } else if ((pendingIntent != null) and alarmModel.onOff.not()) {
-//            // 알람은 켜져있는데, 데이터는 꺼져있는 경우
-//            // 알람을 취소함
-//            pendingIntent.cancel()
-//        }
+        val pendingIntent = PendingIntent.getBroadcast(this, ALARM_REQUEST_CODE, Intent(this, Ch11_AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE)
+
+        if ((pendingIntent == null) and alarmModel.onOff) {
+            // 알람은 꺼져있는데, 데이터(알람모델)는 켜져있는 경우
+            alarmModel.onOff = false
+        } else if ((pendingIntent != null) and alarmModel.onOff.not()) {
+            // 알람은 켜져있는데, 데이터는 꺼져있는 경우
+            // 알람을 취소함
+            pendingIntent.cancel()
+        }
         return alarmModel
     }
 
@@ -121,6 +153,11 @@ class Ch11_MainActivity : AppCompatActivity() {
             text = model.onOffText
             tag = model // 모델을 잠시 저장한다
         }
+    }
+
+    private fun cancelAlarm() {
+        val pendingIntent = PendingIntent.getBroadcast(this, ALARM_REQUEST_CODE, Intent(this, Ch11_AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE)
+        pendingIntent?.cancel()
     }
 
     companion object {
