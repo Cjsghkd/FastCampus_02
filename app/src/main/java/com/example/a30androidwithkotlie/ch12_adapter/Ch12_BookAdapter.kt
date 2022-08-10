@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.a30androidwithkotlie.ch12_model.Ch12_Book
 import com.example.a30androidwithkotlie.databinding.Ch12ItemBookBinding
 
@@ -13,6 +14,12 @@ class Ch12_BookAdapter : ListAdapter<Ch12_Book, Ch12_BookAdapter.BookItemViewHol
     inner class BookItemViewHolder(private val binding : Ch12ItemBookBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(bookModel : Ch12_Book) {
             binding.titleTextView.text = bookModel.title
+            binding.descriptionTextView.text = bookModel.description
+
+            Glide
+                .with(binding.coverImageView.context)
+                .load(bookModel.coverSmallUrl)
+                .into(binding.coverImageView)
         }
     }
 

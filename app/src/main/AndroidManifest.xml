@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.30개프로젝트로배우는Android앱개발WithKotlie"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".Ch11_MainActivity"
