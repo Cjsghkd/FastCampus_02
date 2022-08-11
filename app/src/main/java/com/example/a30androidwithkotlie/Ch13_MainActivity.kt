@@ -18,8 +18,9 @@ class Ch13_MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        if (auth.currentUser == null) { // 파이어베이스에 유저 정보가 널인가?
-            startActivity(Intent(this, Ch13_LoginActivity::class.java))
-        }
+//        if (auth.currentUser == null) { // 파이어베이스에 유저 정보가 널인가?
+//            startActivity(Intent(this, Ch13_LoginActivity::class.java))
+//        }
+        startActivity(Intent(this, Ch13_LikeActivity::class.java))
     }
 }

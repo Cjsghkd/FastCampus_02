@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Ch13_LikeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Ch13_LoginActivity"
             android:exported="true" />
         <activity
