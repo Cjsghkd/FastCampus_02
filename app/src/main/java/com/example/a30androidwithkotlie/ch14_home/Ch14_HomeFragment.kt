@@ -26,8 +26,5 @@ class Ch14_HomeFragment : Fragment(R.layout.ch14_fragment_home) {
 
         fragmentHomeBinding.articleRecyclerView.layoutManager = LinearLayoutManager(context)
         fragmentHomeBinding.articleRecyclerView.adapter = articleAdapter
-
-
     }
-
 }

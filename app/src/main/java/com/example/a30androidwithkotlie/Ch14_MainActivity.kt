@@ -27,7 +27,6 @@ class Ch14_MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(homeFragment)
                 R.id.chatList -> replaceFragment(chatFragment)
                 R.id.myPage -> replaceFragment(myPageFragment)
-
             }
             true
         }

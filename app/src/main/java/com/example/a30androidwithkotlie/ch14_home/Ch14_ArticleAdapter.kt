@@ -17,7 +17,6 @@ class Ch14_ArticleAdapter : ListAdapter<Ch14_ArticleModel, Ch14_ArticleAdapter.V
             val format = SimpleDateFormat("MM월 dd일")
             val date = Date(articleModel.createdAt)
 
-
             binding.titleTextView.text = articleModel.title
             binding.dateTextView.text = format.format(date).toString()
             binding.priceTextView.text = articleModel.price
