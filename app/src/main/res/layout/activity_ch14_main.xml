@@ -25,6 +25,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/ch14_bottom_navigation_view" />
+        app:menu="@menu/ch14_botton_navigation_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
