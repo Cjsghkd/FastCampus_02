@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Ch13_MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".Ch13_LikeActivity"
             android:exported="false" />
         <activity
@@ -77,7 +80,7 @@
             android:name=".Ch1_ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".Ch13_MainActivity"
+            android:name=".Ch14_MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
