@@ -24,4 +24,6 @@
     <color name="gray">#aaaaaa</color>
 
     <color name="gray_cc">#cccccc</color>
+
+    <color name="gray_ec">#ececec</color>
 </resources>
