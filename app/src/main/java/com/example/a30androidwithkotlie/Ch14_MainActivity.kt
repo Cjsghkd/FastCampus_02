@@ -19,7 +19,7 @@ class Ch14_MainActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        replaceFragment(homeFragment) // 초기에는 홈 프래그먼트로
+        replaceFragment(homeFragment) // 초기(처음 킬때)에는 홈 프래그먼트로
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
 
