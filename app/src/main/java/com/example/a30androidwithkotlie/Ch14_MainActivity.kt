@@ -16,7 +16,6 @@ class Ch14_MainActivity : AppCompatActivity() {
         val homeFragment = Ch14_HomeFragment()
         val chatFragment = Ch14_ChatListFragment()
         val myPageFragment = Ch14_MyPageFragment()
-
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         replaceFragment(homeFragment) // 초기(처음 킬때)에는 홈 프래그먼트로
