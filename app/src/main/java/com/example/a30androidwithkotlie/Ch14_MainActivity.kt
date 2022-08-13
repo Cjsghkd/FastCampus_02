@@ -22,7 +22,6 @@ class Ch14_MainActivity : AppCompatActivity() {
         replaceFragment(homeFragment) // 초기(처음 킬때)에는 홈 프래그먼트로
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
-
             when (it.itemId) {
                 R.id.home -> replaceFragment(homeFragment)
                 R.id.chatList -> replaceFragment(chatFragment)
