@@ -18,7 +18,7 @@ class Ch14_MainActivity : AppCompatActivity() {
         val myPageFragment = Ch14_MyPageFragment()
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        replaceFragment(homeFragment) // 초기(처음 킬때)에는 홈 프래그먼트로
+        replaceFragment(homeFragment) // 앱을 실행시 처음 화면을 홈 프래그먼트로 실행한다
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
