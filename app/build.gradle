@@ -33,10 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    // Ch12, 14 viewBinding 설정
-//    viewBinding {
-//        enabled = true
-//    }
+    // Ch12, 14, 15 viewBinding 설정
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
