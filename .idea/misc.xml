@@ -16,6 +16,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/drawable/circle_yellow.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/drawable/drawable_tick_mark.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/drawable/ic_baseline_unfold_less_24.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/activity_ch10_main.xml" value="0.18206521739130435" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/activity_ch11_main.xml" value="0.1" />
@@ -24,6 +25,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/activity_ch13_login.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/activity_ch13_main.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/activity_ch14_main.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/activity_ch15_main.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/activity_ch1_result.xml" value="0.1743659420289855" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/activity_ch2_main.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/activity_ch3_diary.xml" value="0.1743659420289855" />
@@ -46,9 +48,11 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/ch14_fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/ch14_fragment_mypage.xml" value="0.18070652173913043" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/ch14_item_article.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/ch15_fragment_player.xml" value="0.1802536231884058" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/layout/ch9_view_custom_notification.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/menu/ch14_bottom_navigation_view.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/menu/ch14_botton_navigation_view.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/30AndroidwithKotlie/app/src/main/res/menu/ch15_bottom_nav_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

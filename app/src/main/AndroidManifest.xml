@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Ch15_MainActivity"
+            android:name=".Ch14_MainActivity"
             android:exported="false" />
         <activity
             android:name=".Ch13_MainActivity"
@@ -83,7 +83,7 @@
             android:name=".Ch1_ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".Ch14_MainActivity"
+            android:name=".Ch15_MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -98,7 +98,8 @@
 
         <service
             android:name=".Ch9_MyFirebaseMessagingService"
-            android:exported="false">
+            android:exported="false"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

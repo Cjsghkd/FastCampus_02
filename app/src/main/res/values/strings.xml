@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">30개 프로젝트로 배우는 Android 앱 개발 with Kotlie</string>
+    <string name="home">홈</string>
 </resources>
