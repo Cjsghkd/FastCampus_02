@@ -23,7 +23,11 @@ class Ch15_MainActivity : AppCompatActivity() {
             .replace(R.id.ch15_fragmentContainer, Ch15_PlayerFragment())
             .commit()
 
-        videoAdapter = ch15_VideoAdapter()
+        videoAdapter = ch15_VideoAdapter(callback = { url, title ->
+            supportFragmentManager.fragments.find { it is Ch15_PlayerFragment }?.let {
+                (it as Ch15_PlayerFragment).play(url, title)
+            }
+        })
 
         findViewById<RecyclerView>(R.id.ch15_mainRecyclerView).apply {
             adapter = videoAdapter
@@ -61,4 +65,5 @@ class Ch15_MainActivity : AppCompatActivity() {
                 })
         }
     }
+
 }

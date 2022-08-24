@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.a30androidwithkotlie.R
 import com.example.a30androidwithkotlie.ch15_model.Ch15_VideoModel
 
-class ch15_VideoAdapter : ListAdapter<Ch15_VideoModel, ch15_VideoAdapter.ViewHolder>(diffUtil) {
+class ch15_VideoAdapter(val callback : (String, String) -> Unit) : ListAdapter<Ch15_VideoModel, ch15_VideoAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val view : View) : RecyclerView.ViewHolder(view) {
         fun bind(item : Ch15_VideoModel) {
@@ -26,6 +26,10 @@ class ch15_VideoAdapter : ListAdapter<Ch15_VideoModel, ch15_VideoAdapter.ViewHol
             Glide.with(thumbnailImageView.context)
                 .load(item.thumb)
                 .into(thumbnailImageView)
+
+            view.setOnClickListener {
+                callback(item.sources, item.title)
+            }
         }
     }
 
