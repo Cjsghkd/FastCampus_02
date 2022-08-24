@@ -44,7 +44,7 @@ class Ch15_MainActivity : AppCompatActivity() {
                 .enqueue(object : Callback<ch15_VideoDto> {
                     override fun onResponse(call: Call<ch15_VideoDto>, response: Response<ch15_VideoDto>) {
                         if (response.isSuccessful.not()) {
-                            Log.d("MainActivity", "response fail")
+//                            Log.d("MainActivity", "response fail")
                             return
                         }
 
@@ -52,8 +52,6 @@ class Ch15_MainActivity : AppCompatActivity() {
 //                            Log.d("MainActivity", it.toString())
                             videoAdapter.submitList(videoDto.videos)
                         }
-
-
                     }
 
                     override fun onFailure(call: Call<ch15_VideoDto>, t: Throwable) {
