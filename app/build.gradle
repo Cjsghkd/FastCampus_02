@@ -78,4 +78,8 @@ dependencies {
 //    implementation 'com.google.firebase:firebase-auth-ktx'
 //    implementation 'com.google.firebase:firebase-analytics-ktx'
 //    implementation 'com.google.firebase:firebase-database-ktx:20.0.5'
+
+    // Ch15 Retrofit 설정
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }
